@@ -5,6 +5,10 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 require('dotenv').config();
 
+//imports route
+const authRoutes = require('./routes/auth')
+
+
 // app
 const app = express();
 
@@ -36,13 +40,11 @@ app.use(bodyParser.json({ limit: "2mb" }));
 app.use(express.json());
 app.use(cors());
 
+// routes middleware
+app.use('/api', authRoutes)
+
 
 // route
-app.get('/api', (req, res) => {
-    res.status(200).json({
-        message: 'Hello World!'
-    })
-})
 
 
 
