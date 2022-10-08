@@ -7,32 +7,14 @@ const cors = require('cors');
 const { readdirSync } = require("fs")
 require('dotenv').config();
 
-//imports route
-// const authRoutes = require('./routes/auth')
-
-
 // app
 const app = express();
 
 
 
 
-// db
-mongoose.connect(process.env.DATABASE, {    //contacts-db => documents     and table = collection
-    useNewUrlParser: true,
-    // userCreateIndex: true,
-    // useFindAndModify: true,
-    useUnifiedTopology: true,
-});
-const db = mongoose.connection
-// console.log(db);
-db.on('error', (err) => {
-    console.log(err);
-    console.log('this is error');
-})
-db.once('open', () => {
-    console.log("database connection done  ");
-})
+//database
+require('./config/dbConnect')();
 
 
 
@@ -55,5 +37,5 @@ readdirSync('./routes').map((r) => app.use("/api", require('./routes/' + r)))
 
 
 // PORT
-const port = process.env.PORT || 8000
+const port = process.env.PORT || 5000
 app.listen(port, () => console.log(`Server is running on port! ${port}`))
