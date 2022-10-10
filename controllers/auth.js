@@ -1,7 +1,8 @@
 const User = require("../models/user");
 
-exports.createOrUpdateUser = async (req, res, next) => {
+const createOrUpdateUser = async (req, res, next) => {
   const { email, name, picture } = req.user;
+  // if the user already exists in database we not create again
   const user = await User.findOneAndUpdate(
     { email },
     { name: email.split("@")[0], picture },
@@ -20,9 +21,13 @@ exports.createOrUpdateUser = async (req, res, next) => {
   }
 };
 
-exports.currentUser = async (req, res) => {
+const currentUser = async (req, res) => {
   User.findOne({ email: req.user.email }).exec((error, user) => {
     if (error) throw new Error(error);
     res.json(user);
   });
 };
+
+module.exports.createOrUpdateUser = createOrUpdateUser
+module.exports.currentUser = currentUser
+
