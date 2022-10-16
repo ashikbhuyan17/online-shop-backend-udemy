@@ -26,6 +26,7 @@ exports.list = async (req, res) => {
 // // Category Read by Params ID
 exports.read = async (req, res) => {
     const params = req.params.slug;
+    console.log("params", params)
     try {
         const category = await Category.findOne({ slug: params }).exec();
         category ? res.json({ category }) : res.json({ message: `${params} not found` })

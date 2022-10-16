@@ -108,6 +108,7 @@ exports.update = async (req, res) => {
 // --------[Comment Box]--------------
 exports.list = async (req, res) => {
     try {
+        // createAt/updateAt, desc/asc, 3
         const { sort, order, page } = req.body;
         const currentPage = page || 1;
         const perPage = 3;

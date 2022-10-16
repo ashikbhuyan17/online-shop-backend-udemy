@@ -70,15 +70,15 @@ const productSchema = mongoose.Schema(
                 "No Brand",
             ],
         },
-        // ratings: [
-        //   {
-        //     star: Number,
-        //     postBy: {
-        //       type: ObjectId,
-        //       ref: "User",
-        //     },
-        //   },
-        // ],
+        ratings: [
+            {
+                star: Number,
+                postBy: {
+                    type: ObjectId,
+                    ref: "User",
+                },
+            },
+        ],
     },
     { timestamps: true }
 );
