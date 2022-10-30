@@ -215,6 +215,7 @@ const handlePrice = async (req, res, price) => {
 };
 //Query by category
 const handleCategory = async (req, res, category) => {
+    console.log("category", category);
     try {
         let products = await Product.find({ category })
             .populate("category", "_id name")
@@ -252,6 +253,7 @@ const handleStar = async (req, res, stars) => {
 };
 //Query by Sub
 const handleSub = async (req, res, sub) => {
+    console.log("sub", sub)
     const products = await Product.find({ subs: sub })
         .populate("category", "_id name")
         .populate("subs", "_id name")
